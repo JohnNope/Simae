@@ -47,7 +47,7 @@ public class Rol implements Serializable {
     @Size(min = 1, max = 15)
     @Column(name = "NombreRol")
     private String nombreRol;
-    @ManyToMany(mappedBy = "rolList", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private List<Permiso> permisos;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rol", fetch = FetchType.LAZY)
     private List<Usuario> usuarios;

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateOperarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateOperarioLabel_codigoOperario}" for="codigoOperario" />
+                    <h:inputText id="codigoOperario" value="#{operarioController.selected.codigoOperario}" title="#{bundle.CreateOperarioTitle_codigoOperario}" required="true" requiredMessage="#{bundle.CreateOperarioRequiredMessage_codigoOperario}"/>
+                    <h:outputLabel value="#{bundle.CreateOperarioLabel_fechaDeAsignacionEquipo}" for="fechaDeAsignacionEquipo" />
+                    <h:inputText id="fechaDeAsignacionEquipo" value="#{operarioController.selected.fechaDeAsignacionEquipo}" title="#{bundle.CreateOperarioTitle_fechaDeAsignacionEquipo}" required="true" requiredMessage="#{bundle.CreateOperarioRequiredMessage_fechaDeAsignacionEquipo}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateOperarioLabel_matriculaEquipo}" for="matriculaEquipo" />
+                    <h:selectOneMenu id="matriculaEquipo" value="#{operarioController.selected.matriculaEquipo}" title="#{bundle.CreateOperarioTitle_matriculaEquipo}" required="true" requiredMessage="#{bundle.CreateOperarioRequiredMessage_matriculaEquipo}">
+                        <f:selectItems value="#{equipoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOperarioLabel_numeroDeDocumento}" for="numeroDeDocumento" />
+                    <h:selectOneMenu id="numeroDeDocumento" value="#{operarioController.selected.numeroDeDocumento}" title="#{bundle.CreateOperarioTitle_numeroDeDocumento}" required="true" requiredMessage="#{bundle.CreateOperarioRequiredMessage_numeroDeDocumento}">
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{operarioController.create}" value="#{bundle.CreateOperarioSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{operarioController.prepareList}" value="#{bundle.CreateOperarioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateOperarioIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

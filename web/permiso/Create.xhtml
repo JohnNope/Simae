@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePermisoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePermisoLabel_identificacionPermiso}" for="identificacionPermiso" />
+                    <h:inputText id="identificacionPermiso" value="#{permisoController.selected.identificacionPermiso}" title="#{bundle.CreatePermisoTitle_identificacionPermiso}" required="true" requiredMessage="#{bundle.CreatePermisoRequiredMessage_identificacionPermiso}"/>
+                    <h:outputLabel value="#{bundle.CreatePermisoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{permisoController.selected.nombre}" title="#{bundle.CreatePermisoTitle_nombre}" required="true" requiredMessage="#{bundle.CreatePermisoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreatePermisoLabel_url}" for="url" />
+                    <h:inputText id="url" value="#{permisoController.selected.url}" title="#{bundle.CreatePermisoTitle_url}" />
+                    <h:outputLabel value="#{bundle.CreatePermisoLabel_icono}" for="icono" />
+                    <h:inputText id="icono" value="#{permisoController.selected.icono}" title="#{bundle.CreatePermisoTitle_icono}" />
+                    <h:outputLabel value="#{bundle.CreatePermisoLabel_idPermisoPadre}" for="idPermisoPadre" />
+                    <h:selectOneMenu id="idPermisoPadre" value="#{permisoController.selected.idPermisoPadre}" title="#{bundle.CreatePermisoTitle_idPermisoPadre}" required="true" requiredMessage="#{bundle.CreatePermisoRequiredMessage_idPermisoPadre}">
+                        <f:selectItems value="#{permisoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{permisoController.create}" value="#{bundle.CreatePermisoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{permisoController.prepareList}" value="#{bundle.CreatePermisoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePermisoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

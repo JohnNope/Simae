@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewOperarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewOperarioLabel_codigoOperario}"/>
+                    <h:outputText value="#{operarioController.selected.codigoOperario}" title="#{bundle.ViewOperarioTitle_codigoOperario}"/>
+                    <h:outputText value="#{bundle.ViewOperarioLabel_fechaDeAsignacionEquipo}"/>
+                    <h:outputText value="#{operarioController.selected.fechaDeAsignacionEquipo}" title="#{bundle.ViewOperarioTitle_fechaDeAsignacionEquipo}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewOperarioLabel_matriculaEquipo}"/>
+                    <h:outputText value="#{operarioController.selected.matriculaEquipo}" title="#{bundle.ViewOperarioTitle_matriculaEquipo}"/>
+                    <h:outputText value="#{bundle.ViewOperarioLabel_numeroDeDocumento}"/>
+                    <h:outputText value="#{operarioController.selected.numeroDeDocumento}" title="#{bundle.ViewOperarioTitle_numeroDeDocumento}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{operarioController.destroyAndView}" value="#{bundle.ViewOperarioDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewOperarioEditLink}"/>
+                <br />
+                <h:commandLink action="#{operarioController.prepareCreate}" value="#{bundle.ViewOperarioCreateLink}" />
+                <br />
+                <h:commandLink action="#{operarioController.prepareList}" value="#{bundle.ViewOperarioShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewOperarioIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

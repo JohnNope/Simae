@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateContratoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateContratoLabel_codigoContrato}" for="codigoContrato" />
+                    <h:inputText id="codigoContrato" value="#{contratoController.selected.codigoContrato}" title="#{bundle.CreateContratoTitle_codigoContrato}" required="true" requiredMessage="#{bundle.CreateContratoRequiredMessage_codigoContrato}"/>
+                    <h:outputLabel value="#{bundle.CreateContratoLabel_fechaInicio}" for="fechaInicio" />
+                    <h:inputText id="fechaInicio" value="#{contratoController.selected.fechaInicio}" title="#{bundle.CreateContratoTitle_fechaInicio}" required="true" requiredMessage="#{bundle.CreateContratoRequiredMessage_fechaInicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateContratoLabel_fechaFin}" for="fechaFin" />
+                    <h:inputText id="fechaFin" value="#{contratoController.selected.fechaFin}" title="#{bundle.CreateContratoTitle_fechaFin}" required="true" requiredMessage="#{bundle.CreateContratoRequiredMessage_fechaFin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateContratoLabel_cantidadEquiposAlquilados}" for="cantidadEquiposAlquilados" />
+                    <h:inputText id="cantidadEquiposAlquilados" value="#{contratoController.selected.cantidadEquiposAlquilados}" title="#{bundle.CreateContratoTitle_cantidadEquiposAlquilados}" required="true" requiredMessage="#{bundle.CreateContratoRequiredMessage_cantidadEquiposAlquilados}"/>
+                    <h:outputLabel value="#{bundle.CreateContratoLabel_descripcion}" for="descripcion" />
+                    <h:inputTextarea rows="4" cols="30" id="descripcion" value="#{contratoController.selected.descripcion}" title="#{bundle.CreateContratoTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.CreateContratoLabel_costoAlquiler}" for="costoAlquiler" />
+                    <h:inputText id="costoAlquiler" value="#{contratoController.selected.costoAlquiler}" title="#{bundle.CreateContratoTitle_costoAlquiler}" required="true" requiredMessage="#{bundle.CreateContratoRequiredMessage_costoAlquiler}"/>
+                    <h:outputLabel value="#{bundle.CreateContratoLabel_codigoEstadoContrato}" for="codigoEstadoContrato" />
+                    <h:selectOneMenu id="codigoEstadoContrato" value="#{contratoController.selected.codigoEstadoContrato}" title="#{bundle.CreateContratoTitle_codigoEstadoContrato}" required="true" requiredMessage="#{bundle.CreateContratoRequiredMessage_codigoEstadoContrato}">
+                        <f:selectItems value="#{estadocontratoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contratoController.create}" value="#{bundle.CreateContratoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{contratoController.prepareList}" value="#{bundle.CreateContratoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateContratoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

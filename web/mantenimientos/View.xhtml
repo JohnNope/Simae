@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMantenimientosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMantenimientosLabel_codigoMantenimiento}"/>
+                    <h:outputText value="#{mantenimientosController.selected.codigoMantenimiento}" title="#{bundle.ViewMantenimientosTitle_codigoMantenimiento}"/>
+                    <h:outputText value="#{bundle.ViewMantenimientosLabel_fechaMantenimiento}"/>
+                    <h:outputText value="#{mantenimientosController.selected.fechaMantenimiento}" title="#{bundle.ViewMantenimientosTitle_fechaMantenimiento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMantenimientosLabel_piezasCambiadas}"/>
+                    <h:outputText value="#{mantenimientosController.selected.piezasCambiadas}" title="#{bundle.ViewMantenimientosTitle_piezasCambiadas}"/>
+                    <h:outputText value="#{bundle.ViewMantenimientosLabel_observacionDeRevision}"/>
+                    <h:outputText value="#{mantenimientosController.selected.observacionDeRevision}" title="#{bundle.ViewMantenimientosTitle_observacionDeRevision}"/>
+                    <h:outputText value="#{bundle.ViewMantenimientosLabel_codigoTipoMantenimiento}"/>
+                    <h:outputText value="#{mantenimientosController.selected.codigoTipoMantenimiento}" title="#{bundle.ViewMantenimientosTitle_codigoTipoMantenimiento}"/>
+                    <h:outputText value="#{bundle.ViewMantenimientosLabel_numeroDeDocumento}"/>
+                    <h:outputText value="#{mantenimientosController.selected.numeroDeDocumento}" title="#{bundle.ViewMantenimientosTitle_numeroDeDocumento}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{mantenimientosController.destroyAndView}" value="#{bundle.ViewMantenimientosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewMantenimientosEditLink}"/>
+                <br />
+                <h:commandLink action="#{mantenimientosController.prepareCreate}" value="#{bundle.ViewMantenimientosCreateLink}" />
+                <br />
+                <h:commandLink action="#{mantenimientosController.prepareList}" value="#{bundle.ViewMantenimientosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewMantenimientosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

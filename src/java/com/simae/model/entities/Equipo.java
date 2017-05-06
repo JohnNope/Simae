@@ -72,7 +72,7 @@ public class Equipo implements Serializable {
     @Column(name = "FechaMantenimimientoProgramado")
     @Temporal(TemporalType.DATE)
     private Date fechaMantenimimientoProgramado;
-    @ManyToMany(mappedBy = "equipoList", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "equipos", fetch = FetchType.LAZY)
     private List<Contrato> contratos;
     @JoinTable(name = "equiposmantenimientos", joinColumns = {
         @JoinColumn(name = "MatriculaEquipo", referencedColumnName = "Matricula")}, inverseJoinColumns = {

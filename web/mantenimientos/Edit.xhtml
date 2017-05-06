@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMantenimientosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMantenimientosLabel_codigoMantenimiento}" for="codigoMantenimiento" />
+                    <h:inputText id="codigoMantenimiento" value="#{mantenimientosController.selected.codigoMantenimiento}" title="#{bundle.EditMantenimientosTitle_codigoMantenimiento}" required="true" requiredMessage="#{bundle.EditMantenimientosRequiredMessage_codigoMantenimiento}"/>
+                    <h:outputLabel value="#{bundle.EditMantenimientosLabel_fechaMantenimiento}" for="fechaMantenimiento" />
+                    <h:inputText id="fechaMantenimiento" value="#{mantenimientosController.selected.fechaMantenimiento}" title="#{bundle.EditMantenimientosTitle_fechaMantenimiento}" required="true" requiredMessage="#{bundle.EditMantenimientosRequiredMessage_fechaMantenimiento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditMantenimientosLabel_piezasCambiadas}" for="piezasCambiadas" />
+                    <h:inputText id="piezasCambiadas" value="#{mantenimientosController.selected.piezasCambiadas}" title="#{bundle.EditMantenimientosTitle_piezasCambiadas}" />
+                    <h:outputLabel value="#{bundle.EditMantenimientosLabel_observacionDeRevision}" for="observacionDeRevision" />
+                    <h:inputTextarea rows="4" cols="30" id="observacionDeRevision" value="#{mantenimientosController.selected.observacionDeRevision}" title="#{bundle.EditMantenimientosTitle_observacionDeRevision}" />
+                    <h:outputLabel value="#{bundle.EditMantenimientosLabel_codigoTipoMantenimiento}" for="codigoTipoMantenimiento" />
+                    <h:selectOneMenu id="codigoTipoMantenimiento" value="#{mantenimientosController.selected.codigoTipoMantenimiento}" title="#{bundle.EditMantenimientosTitle_codigoTipoMantenimiento}" required="true" requiredMessage="#{bundle.EditMantenimientosRequiredMessage_codigoTipoMantenimiento}">
+                        <f:selectItems value="#{tipoMatenimientoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMantenimientosLabel_numeroDeDocumento}" for="numeroDeDocumento" />
+                    <h:selectOneMenu id="numeroDeDocumento" value="#{mantenimientosController.selected.numeroDeDocumento}" title="#{bundle.EditMantenimientosTitle_numeroDeDocumento}" required="true" requiredMessage="#{bundle.EditMantenimientosRequiredMessage_numeroDeDocumento}">
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{mantenimientosController.update}" value="#{bundle.EditMantenimientosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMantenimientosViewLink}"/>
+                <br />
+                <h:commandLink action="#{mantenimientosController.prepareList}" value="#{bundle.EditMantenimientosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMantenimientosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

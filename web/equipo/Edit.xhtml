@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEquipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEquipoLabel_matricula}" for="matricula" />
+                    <h:inputText id="matricula" value="#{equipoController.selected.matricula}" title="#{bundle.EditEquipoTitle_matricula}" required="true" requiredMessage="#{bundle.EditEquipoRequiredMessage_matricula}"/>
+                    <h:outputLabel value="#{bundle.EditEquipoLabel_modelo}" for="modelo" />
+                    <h:inputText id="modelo" value="#{equipoController.selected.modelo}" title="#{bundle.EditEquipoTitle_modelo}" required="true" requiredMessage="#{bundle.EditEquipoRequiredMessage_modelo}"/>
+                    <h:outputLabel value="#{bundle.EditEquipoLabel_marca}" for="marca" />
+                    <h:inputText id="marca" value="#{equipoController.selected.marca}" title="#{bundle.EditEquipoTitle_marca}" required="true" requiredMessage="#{bundle.EditEquipoRequiredMessage_marca}"/>
+                    <h:outputLabel value="#{bundle.EditEquipoLabel_potencia}" for="potencia" />
+                    <h:inputText id="potencia" value="#{equipoController.selected.potencia}" title="#{bundle.EditEquipoTitle_potencia}" required="true" requiredMessage="#{bundle.EditEquipoRequiredMessage_potencia}"/>
+                    <h:outputLabel value="#{bundle.EditEquipoLabel_fechaMantenimimientoProgramado}" for="fechaMantenimimientoProgramado" />
+                    <h:inputText id="fechaMantenimimientoProgramado" value="#{equipoController.selected.fechaMantenimimientoProgramado}" title="#{bundle.EditEquipoTitle_fechaMantenimimientoProgramado}" required="true" requiredMessage="#{bundle.EditEquipoRequiredMessage_fechaMantenimimientoProgramado}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEquipoLabel_codigoTipoEquipo}" for="codigoTipoEquipo" />
+                    <h:selectOneMenu id="codigoTipoEquipo" value="#{equipoController.selected.codigoTipoEquipo}" title="#{bundle.EditEquipoTitle_codigoTipoEquipo}" required="true" requiredMessage="#{bundle.EditEquipoRequiredMessage_codigoTipoEquipo}">
+                        <f:selectItems value="#{tipoEquipoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{equipoController.update}" value="#{bundle.EditEquipoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEquipoViewLink}"/>
+                <br />
+                <h:commandLink action="#{equipoController.prepareList}" value="#{bundle.EditEquipoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEquipoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

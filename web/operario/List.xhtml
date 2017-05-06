@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListOperarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListOperarioEmpty}" rendered="#{operarioController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{operarioController.items.rowCount > 0}">
+                    <h:outputText value="#{operarioController.pagination.pageFirstItem + 1}..#{operarioController.pagination.pageLastItem + 1}/#{operarioController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{operarioController.previous}" value="#{bundle.Previous} #{operarioController.pagination.pageSize}" rendered="#{operarioController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{operarioController.next}" value="#{bundle.Next} #{operarioController.pagination.pageSize}" rendered="#{operarioController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{operarioController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOperarioTitle_codigoOperario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoOperario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOperarioTitle_fechaDeAsignacionEquipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaDeAsignacionEquipo}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOperarioTitle_matriculaEquipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.matriculaEquipo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOperarioTitle_numeroDeDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroDeDocumento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{operarioController.prepareView}" value="#{bundle.ListOperarioViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{operarioController.prepareEdit}" value="#{bundle.ListOperarioEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{operarioController.destroy}" value="#{bundle.ListOperarioDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{operarioController.prepareCreate}" value="#{bundle.ListOperarioCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListOperarioIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

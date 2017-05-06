@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEquipoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEquipoLabel_matricula}"/>
+                    <h:outputText value="#{equipoController.selected.matricula}" title="#{bundle.ViewEquipoTitle_matricula}"/>
+                    <h:outputText value="#{bundle.ViewEquipoLabel_modelo}"/>
+                    <h:outputText value="#{equipoController.selected.modelo}" title="#{bundle.ViewEquipoTitle_modelo}"/>
+                    <h:outputText value="#{bundle.ViewEquipoLabel_marca}"/>
+                    <h:outputText value="#{equipoController.selected.marca}" title="#{bundle.ViewEquipoTitle_marca}"/>
+                    <h:outputText value="#{bundle.ViewEquipoLabel_potencia}"/>
+                    <h:outputText value="#{equipoController.selected.potencia}" title="#{bundle.ViewEquipoTitle_potencia}"/>
+                    <h:outputText value="#{bundle.ViewEquipoLabel_fechaMantenimimientoProgramado}"/>
+                    <h:outputText value="#{equipoController.selected.fechaMantenimimientoProgramado}" title="#{bundle.ViewEquipoTitle_fechaMantenimimientoProgramado}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewEquipoLabel_codigoTipoEquipo}"/>
+                    <h:outputText value="#{equipoController.selected.codigoTipoEquipo}" title="#{bundle.ViewEquipoTitle_codigoTipoEquipo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{equipoController.destroyAndView}" value="#{bundle.ViewEquipoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEquipoEditLink}"/>
+                <br />
+                <h:commandLink action="#{equipoController.prepareCreate}" value="#{bundle.ViewEquipoCreateLink}" />
+                <br />
+                <h:commandLink action="#{equipoController.prepareList}" value="#{bundle.ViewEquipoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEquipoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
