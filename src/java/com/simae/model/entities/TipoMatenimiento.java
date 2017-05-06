@@ -47,7 +47,7 @@ public class TipoMatenimiento implements Serializable {
     @Column(name = "NombreTipoMantenimiento")
     private String nombreTipoMantenimiento;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoTipoMantenimiento", fetch = FetchType.LAZY)
-    private List<Mantenimientos> mantenimientosList;
+    private List<Mantenimientos> mantenimientos;
 
     public TipoMatenimiento() {
     }
@@ -78,12 +78,12 @@ public class TipoMatenimiento implements Serializable {
     }
 
     @XmlTransient
-    public List<Mantenimientos> getMantenimientosList() {
-        return mantenimientosList;
+    public List<Mantenimientos> getMantenimientos() {
+        return mantenimientos;
     }
 
-    public void setMantenimientosList(List<Mantenimientos> mantenimientosList) {
-        this.mantenimientosList = mantenimientosList;
+    public void setMantenimientos(List<Mantenimientos> mantenimientos) {
+        this.mantenimientos = mantenimientos;
     }
 
     @Override
@@ -108,7 +108,7 @@ public class TipoMatenimiento implements Serializable {
 
     @Override
     public String toString() {
-        return "com.simae.model.entities.TipoMatenimiento[ codigoTipoMantenimiento=" + codigoTipoMantenimiento + " ]";
+        return ""+nombreTipoMantenimiento;
     }
     
 }

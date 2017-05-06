@@ -90,9 +90,9 @@ public class Usuario implements Serializable {
     @Column(name = "Telefono")
     private long telefono;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "numeroDeDocumento", fetch = FetchType.LAZY)
-    private List<Mantenimientos> mantenimientosList;
+    private List<Mantenimientos> mantenimientos;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "numeroDeDocumento", fetch = FetchType.LAZY)
-    private List<Operario> operarioList;
+    private List<Operario> operarios;
     @JoinColumn(name = "Rol", referencedColumnName = "IdentificacionRol")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Rol rol;
@@ -189,21 +189,21 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public List<Mantenimientos> getMantenimientosList() {
-        return mantenimientosList;
+    public List<Mantenimientos> getMantenimientos() {
+        return mantenimientos;
     }
 
-    public void setMantenimientosList(List<Mantenimientos> mantenimientosList) {
-        this.mantenimientosList = mantenimientosList;
+    public void setMantenimientos(List<Mantenimientos> mantenimientos) {
+        this.mantenimientos = mantenimientos;
     }
 
     @XmlTransient
-    public List<Operario> getOperarioList() {
-        return operarioList;
+    public List<Operario> getOperarios() {
+        return operarios;
     }
 
-    public void setOperarioList(List<Operario> operarioList) {
-        this.operarioList = operarioList;
+    public void setOperarios(List<Operario> operarios) {
+        this.operarios = operarios;
     }
 
     public Rol getRol() {
@@ -236,7 +236,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.simae.model.entities.Usuario[ numeroDeDocumento=" + numeroDeDocumento + " ]";
+        return numeroDeDocumento + ": "+ nombre + " "+ apellido;
     }
     
 }
